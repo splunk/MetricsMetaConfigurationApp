@@ -10,7 +10,7 @@ if ($metaPath -eq "True") {
 	if ($metaPath -eq "True") {
 		Remove-Item -path "$metaPath"
 	}
-	Remove-Item -path "$SPLUNKHOME\etc\apps\metrics_meta_app\DeleteMeToRestart"
+	Remove-Item -path "$SPLUNKHOME\etc\apps\MetricsMetaConfigurationApp\DeleteMeToRestart"
 } else {
 	Write-output "No settings have been changed." | timestamp
 	Write-output "No restart required." | timestamp
