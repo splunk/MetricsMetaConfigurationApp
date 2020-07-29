@@ -8,4 +8,4 @@ Remove-Item -path "$CHECKPOINT"
 Remote-Item -path "$APPHOME" -recurse
 
 ### Remove the DeleteMeToRestart file to trigger a restart from the deployment server
-Remove-Item -path "$SPLUNKHOME\etc\apps\MetricsMetaConfigurationApp\DeleteMeToRestart"
+Remove-Item -path "$SplunkHome\etc\apps\MetricsMetaConfigurationApp\DeleteMeToRestart"

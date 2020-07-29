@@ -6,7 +6,7 @@ $APPHOME = $SplunkHome + "\etc\apps\"+ $CUSTOMER +"_metrics_meta_settings"
 $INPUTCONF = $APPHOME + "\local\inputs.conf"
 $METRICSPARAM = "logical_disk,physical_disk,cpu,memory,network,system,process"
 $CHECKPOINT = $SplunkHome + "\etc\metricsCheckpoint"
-$METAPATH = $SPLUNKHOME + "\etc\restart_meta.txt"
+$METAPATH = $SplunkHome + "\etc\restart_meta.txt"
 
 ## Check for checkpoint value and exit if it exists
 if (Test-Path "$CHECKPOINT") {
