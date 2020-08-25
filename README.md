@@ -4,7 +4,7 @@ App designed to create an app that will tag Windows Perfmon inputs with the "_me
 ## Why does this app exist?
 Because metrics collection requires at least 1 _meta value, Splunk Docs recommends using the configuration located here: https://docs.splunk.com/Documentation/InfraApp/2.1.0/Admin/ManualInstallWindowsUF#Sample_inputs.conf_file_for_metrics_and_logs_collection
 
-The _metrics value is predefined in this configuration to contain this:
+The `_meta` value is predefined in this configuration to contain this:
 ```
 _meta =  os::"Microsoft Windows Server 2012 R2 Standard" os_version::6.3.9600 entity_type::Windows_Host
 ```
