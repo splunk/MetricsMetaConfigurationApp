@@ -1,8 +1,8 @@
 # MetricsMetaConfigurationApp
-App designed to create an app that will tag Windows Perfmon inputs with the "_meta" field for each host uniquely. At the moment it is only designed for the out of the box configurations used by Splunk App for Infrastructure.
+App designed to create an app that will tag Windows Perfmon inputs with the `_meta` field for each host uniquely. At the moment it is only designed for the out of the box configurations used by Splunk App for Infrastructure.
 
 ## Why does this app exist?
-Because metrics collection requires at least 1 _meta value, Splunk Docs recommends using the configuration located here: https://docs.splunk.com/Documentation/InfraApp/2.1.0/Admin/ManualInstallWindowsUF#Sample_inputs.conf_file_for_metrics_and_logs_collection
+Because metrics collection requires at least 1 `_meta` value, Splunk Docs recommends using the configuration located here: https://docs.splunk.com/Documentation/InfraApp/2.1.0/Admin/ManualInstallWindowsUF#Sample_inputs.conf_file_for_metrics_and_logs_collection
 
 The `_meta` value is predefined in this configuration to contain this:
 ```
@@ -15,7 +15,7 @@ _meta =  entity_type::Windows_Host
 This isn't a useful pivot point for SAI that could be useful later or in other situations. This app is meant to generate a unique value for each host locally outside of the path of a deployment server. The same logic is used in the scripts included with SAI when deploying the metrics locally on each host.
 
 ## Using the app
-The app is intended to be deployed using a deployment server because a restart of the hosts after app installation is required for the _meta fields to take affect.
+The app is intended to be deployed using a deployment server because a restart of the hosts after app installation is required for the `_meta` fields to take affect.
 
 Below is the default inputs file. This configuration is responsible for running the scripts each time the forwarder restarts except for the restart script. The restart script is on a cron for every 2 minutes and is designed to only trigger a restart under specific circumstances.
 ```
@@ -39,7 +39,7 @@ index = _internal
 script = . "$SplunkHome\etc\apps\MetricsMetaConfigurationApp\bin\cleanMeta.ps1"
 sourcetype = cleanMeta
 ```
-Below is a recommended configuration of the inputs file. This will ensure the proper functionallity of the scripts is maintained. Copy/paste this configuration into the app's 'inputs.conf' in the 'local' directory
+Below is a recommended configuration of the inputs file. This will ensure the proper functionality of the scripts is maintained. Copy/paste this configuration into the app's 'inputs.conf' in the 'local' directory
 ```
 [powershell://restart]
 disabled = 0
