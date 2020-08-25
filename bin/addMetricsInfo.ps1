@@ -1,8 +1,5 @@
-## Customer Variable - fill in with customer value
-$CUSTOMER = "customer"
-
 ## Variables used in the script
-$APPHOME = $SplunkHome + "\etc\apps\"+ $CUSTOMER +"_metrics_meta_settings"
+$APPHOME = $SplunkHome + "\etc\apps\metrics_meta_settings"
 $INPUTCONF = $APPHOME + "\local\inputs.conf"
 $METRICSPARAM = "logical_disk,physical_disk,cpu,memory,network,system,process"
 $CHECKPOINT = $SplunkHome + "\etc\metricsCheckpoint"
