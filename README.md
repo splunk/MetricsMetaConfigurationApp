@@ -48,7 +48,7 @@ disabled = 0
 disabled = 0
 
 [powershell://cleanMeta]
-disabled = 0
+disabled = 1
 ```
 ## Pre-planning
 If you deployed metrics ingestion prior to using this app, you may have to make an alteration to the currently deployed inputs configuration to remove the static value assigned to `_meta`. It's important there be no static value assigned to ensure the proper `_meta` value takes precedence when the scripts are run.
@@ -66,6 +66,20 @@ stateOnClient = enabled
 ```
 Take note of the `restartSplunkd` setting. This should ALWAYS be '1' or 'true' for this app to ensure the restart mechanism works properly.
 
+## Cleaning the meta
+In the event a host has changes made to it, we need a way to regenerate the meta configuration. The `cleanMeta.ps1` script is designed to remove the existing `_meta` configuration from a host. For example, if a Windows server is upgraded from Server 2016 to Server 2019, we need the `_meta` value to reflect that.
+
+To perform the clean, it would be ideal to configure a version of the app that would only run the `cleanMeta.ps1` script without also running the `addMetricsInfo.ps1` script. Otherwise, you can reconfigure the app to run the `cleanMeta.ps1` script, wait for a cycle of deployment to complete, then reconfigure the app back to running the `addMetricsInfo.ps1`.
+```
+[powershell://restart]
+disabled = 0
+
+[powershell://addMetricsInfo]
+disabled = 1
+
+[powershell://cleanMeta]
+disabled = 0
+```
 ## Restarting the Forwarder
 Because this configuration requires the forwarders be restarted, an additional script has been introduced that takes the outcome of each of the scripts used and determines if a restart is required. Each script is designed to create an empty file that the restart script uses to determine if a restart is necessary. If the restart script finds one of the files used to trigger a restart, it removes them as well as one other static file deployed with the app. Removing the other file should trigger a restart from the deployment server when the app re-syncs for the now missing file.
 
