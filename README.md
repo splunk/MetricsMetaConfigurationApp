@@ -1,10 +1,10 @@
 # MetricsMetaConfigurationApp
-App designed to create an app that will tag Windows Perfmon inputs with the `_meta` field for each host uniquely. At the moment it is only designed for the out of the box configurations used by Splunk App for Infrastructure.
+App designed to create an app that will tag Windows Perfmon inputs with the `_meta` field for each host uniquely. At the moment it is only designed for the out of the box configurations used by Splunk App for Infrastructure and Splunk IT Essentials for additional metadata per entity.
 
 ## Why does this app exist?
-Because metrics collection requires at least 1 `_meta` value, Splunk Docs recommends using the configuration located here: https://docs.splunk.com/Documentation/InfraApp/2.1.0/Admin/ManualInstallWindowsUF#Sample_inputs.conf_file_for_metrics_and_logs_collection
+Because Windows metrics collection requires at least 1 `_meta` value, Splunk Docs recommends using the configuration located here: https://docs.splunk.com/Documentation/InfraApp/latest/Admin/ManualInstallWindowsUF
 
-The `_meta` value is predefined in this configuration to contain this:
+The `_meta` value in the documentation is predefined with this configuration to contain this:
 ```
 _meta =  os::"Microsoft Windows Server 2012 R2 Standard" os_version::6.3.9600 entity_type::Windows_Host
 ```
@@ -12,7 +12,7 @@ Because not every server will be that release of Windows at that version, you wo
 ```
 _meta =  entity_type::Windows_Host
 ```
-This isn't a useful pivot point for SAI that could be useful later or in other situations. This app is meant to generate a unique value for each host locally outside of the path of a deployment server. The same logic is used in the scripts included with SAI when deploying the metrics locally on each host.
+This isn't a useful pivot point for SAI/ITE that could be useful later or in other situations. This app is meant to generate a unique value for each host locally outside of the path of a deployment server. The same logic is used in the scripts included with SAI/ITE when deploying the metrics locally on each host.
 
 ## Using the app
 The app is intended to be deployed using a deployment server because a restart of the hosts after app installation is required for the `_meta` fields to take affect.

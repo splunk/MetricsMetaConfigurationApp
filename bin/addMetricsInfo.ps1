@@ -1,7 +1,12 @@
+## USED WHEN TESTING RUNNING MANUALLY
+## If you're doing your own testing, be sure to comment out
+## The checkpoint exit condition as well.
+#$SplunkHome = "C:\Program Files\SplunkUniversalForwarder"
+
 ## Variables used in the script
 $APPHOME = $SplunkHome + "\etc\apps\metrics_meta_settings"
 $INPUTCONF = $APPHOME + "\local\inputs.conf"
-$METRICSPARAM = "logical_disk,physical_disk,cpu,memory,network,system,process"
+$METRICSPARAM = "base"
 $CHECKPOINT = $SplunkHome + "\etc\metricsCheckpoint"
 $METAPATH = $SplunkHome + "\etc\restart_meta.txt"
 
@@ -28,25 +33,7 @@ if (Test-Path "C:\Windows\Amazon\Ec2ConfigService") {
 }
 
 ## List of inputs that will be added to the inputs.conf
-$m_cpu ="[perfmon://CPU]`r`n" `
-+ "disabled = 0"
-
-$m_memory ="[perfmon://Memory]`r`n" `
-+ "disabled = 0"
-
-$m_physical_disk ="[perfmon://PhysicalDisk]`r`n" `
-+ "disabled = 0"
-
-$m_logical_disk ="[perfmon://LogicalDisk]`r`n" `
-+ "disabled = 0"
-
-$m_network ="[perfmon://Network]`r`n" `
-+ "disabled = 0"
-
-$m_system ="[perfmon://System]`r`n" `
-+ "disabled = 0"
-
-$m_process ="[perfmon://Process]`r`n" `
+$m_base ="[perfmon]`r`n" `
 + "disabled = 0"
 
 ## Capture the OS and IP details of the host
