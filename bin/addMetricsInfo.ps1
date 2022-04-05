@@ -1,6 +1,6 @@
 ## USED WHEN TESTING RUNNING MANUALLY
 ## If you're doing your own testing, be sure to comment out
-## The checkpoint exit condition as well.
+## the checkpoint exit condition as well.
 #$SplunkHome = "C:\Program Files\SplunkUniversalForwarder"
 
 ## Variables used in the script
@@ -44,7 +44,7 @@ $ip_info = Test-Connection -ComputerName $env:computername -count 1 | Select-Obj
 $dims = "os::" + "`"" + $os_info.Caption + "`""
 $dims = $dims + " os_version::" + $os_info.Version
 $dims = $dims + " ip::" + "`"" + $ip_info.IPV4Address.IPAddressToString + "`""
-$dims = $dims + ' entity_type::Windows_Host'
+$dims = $dims + ' entity_type::Windows'
 if (-not ([string]::IsNullOrEmpty($cloud_dims))) {
 $dims = $dims + $cloud_dims
 }
