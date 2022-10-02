@@ -66,6 +66,15 @@ stateOnClient = enabled
 ```
 Take note of the `restartSplunkd` setting. This should ALWAYS be '1' or 'true' for this app to ensure the restart mechanism works properly.
 
+## Example Configuration
+Below is an example of the configuration derived from a host in AWS.
+
+```
+[perfmon]
+_meta = os::"Microsoft Windows Server 2022 Datacenter" os_version::10.0.20348 ipv4::"10.#.#.#" ipv6::"fe80::####:####:###:####%26" entity_type::Windows_Host region::"us-east-1a" instance_id::"i-0###########" vpc_id::"vpc-#############" account_id::"5############" public_ip::"3.#.#.#.#"
+```
+Hosts outside of AWS will not derive fields after the `entity_type` field. `public_ip` will only be captured if a public IP is assigned to the AWS instance.
+
 ## Cleaning the meta
 In the event a host has changes made to it, we need a way to regenerate the meta configuration. The `cleanMeta.ps1` script is designed to remove the existing `_meta` configuration from a host. For example, if a Windows server is upgraded from Server 2016 to Server 2019, we need the `_meta` value to reflect that.
 
